@@ -18,7 +18,7 @@ const Home = () => {
 
 						<div className="flex gap-3 items-center">
 							<strong className="text-zinc-700/90">R$ 5000.00</strong>
-							<button className="bg-zinc-800 p-1 rounded cursor-pointer">
+							<button className="bg-zinc-800 p-1 rounded transition-transform hover:scale-105 cursor-pointer">
 								<BsCartPlus size={20} color="#FFF" />
 							</button>
 						</div>
