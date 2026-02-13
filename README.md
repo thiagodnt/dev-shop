@@ -46,7 +46,7 @@ O arquivo `db.json` contem os dados utilizados pela aplicacao, simulando endpoin
 
 ```bash
 npm install -g json-server
-json-server --watch db.json --port 3000
+npx json-server db.json
 ```
 
 Certifique-se de que a porta utilizada pelo json-server corresponde a configurada no projeto.
