@@ -4,7 +4,7 @@ import type { ProductProps } from '../types/Product';
 interface CartContextData {
 	cart: CartProps[];
 	cartAmount: number;
-	addCartItem: (product: ProductProps) => void;
+	addCartItem: (newItem: ProductProps) => void;
 }
 
 interface CartProps {
@@ -27,24 +27,32 @@ function CartProvider({ children }: CartProviderProps) {
 	const [cart, setCart] = useState<CartProps[]>([]);
 
 	function addCartItem(newItem: ProductProps) {
-		const itemIndex = cart.findIndex((item) => item.id === newItem.id);
+		setCart((prevCart) => {
+			const itemIndex = prevCart.findIndex((item) => item.id === newItem.id);
 
-		if (itemIndex !== -1) {
-			let cartList = cart;
+			if (itemIndex !== -1) {
+				const updatedCart = [...prevCart];
 
-			cartList[itemIndex].amount += 1;
-			cartList[itemIndex].total =
-				cartList[itemIndex].amount * cartList[itemIndex].price;
-			return;
-		}
+				updatedCart[itemIndex] = {
+					...updatedCart[itemIndex],
+					amount: updatedCart[itemIndex].amount + 1,
+					total:
+						(updatedCart[itemIndex].amount + 1) *
+						updatedCart[itemIndex].price,
+				};
 
-		let data = {
-			...newItem,
-			amount: 1,
-			total: newItem.price,
-		};
+				return updatedCart;
+			}
 
-		setCart((products) => [...products, data]);
+			return [
+				...prevCart,
+				{
+					...newItem,
+					amount: 1,
+					total: newItem.price,
+				},
+			];
+		});
 	}
 
 	return (
