@@ -27,12 +27,10 @@ export const CartContext = createContext({} as CartContextData);
 
 function CartProvider({ children }: CartProviderProps) {
 	const [cart, setCart] = useState<CartProps[]>([]);
-	const [cartAmount, setCartAmout] = useState(0);
 	const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
 	useEffect(() => {
 		getCartTotalPrice(cart);
-		setCartAmout(cart.length);
 	}, [cart]);
 
 	function addCartItem(newItem: ProductProps) {
@@ -99,7 +97,7 @@ function CartProvider({ children }: CartProviderProps) {
 		<CartContext.Provider
 			value={{
 				cart,
-				cartAmount,
+				cartAmount: cart.length,
 				cartTotalPrice,
 				addCartItem,
 				removeCartItem,
