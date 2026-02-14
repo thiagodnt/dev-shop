@@ -24,7 +24,7 @@ const Home = () => {
 	return (
 		<div>
 			<main className="w-full max-w-7xl px-4 mx-auto">
-				<h1 className="font-bold text-2xl mb-4 mt-10 text-center">
+				<h1 className="font-bold text-2xl mb-4 mt-10 text-center text-slate-900">
 					Produtos em Alta
 				</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
