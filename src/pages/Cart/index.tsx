@@ -4,7 +4,8 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Cart = () => {
-	const { cart, addCartItem, removeCartItem } = useContext(CartContext);
+	const { cart, cartTotalPrice, addCartItem, removeCartItem } =
+		useContext(CartContext);
 
 	return (
 		<div>
@@ -77,7 +78,13 @@ const Cart = () => {
 					</section>
 				))}
 				{cart.length > 0 && (
-					<p className="font-bold mt-4">Total: R$ 1000.00</p>
+					<p className="font-bold mt-4">
+						Total:{' '}
+						{cartTotalPrice.toLocaleString('pt-BR', {
+							style: 'currency',
+							currency: 'BRL',
+						})}
+					</p>
 				)}
 			</main>
 		</div>

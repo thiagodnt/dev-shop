@@ -1,9 +1,10 @@
-import { createContext, useState, type ReactNode } from 'react';
+import { createContext, useEffect, useState, type ReactNode } from 'react';
 import type { ProductProps } from '../types/Product';
 
 interface CartContextData {
 	cart: CartProps[];
 	cartAmount: number;
+	cartTotalPrice: number;
 	addCartItem: (newItem: ProductProps) => void;
 	removeCartItem: (product: CartProps) => void;
 }
@@ -26,6 +27,13 @@ export const CartContext = createContext({} as CartContextData);
 
 function CartProvider({ children }: CartProviderProps) {
 	const [cart, setCart] = useState<CartProps[]>([]);
+	const [cartAmount, setCartAmout] = useState(0);
+	const [cartTotalPrice, setCartTotalPrice] = useState(0);
+
+	useEffect(() => {
+		getCartTotalPrice(cart);
+		setCartAmout(cart.length);
+	}, [cart]);
 
 	function addCartItem(newItem: ProductProps) {
 		setCart((prevCart) => {
@@ -79,11 +87,20 @@ function CartProvider({ children }: CartProviderProps) {
 		});
 	}
 
+	function getCartTotalPrice(items: CartProps[]) {
+		setCartTotalPrice(
+			items.reduce((acc, obj) => {
+				return acc + obj.total;
+			}, 0),
+		);
+	}
+
 	return (
 		<CartContext.Provider
 			value={{
 				cart,
-				cartAmount: cart.length,
+				cartAmount,
+				cartTotalPrice,
 				addCartItem,
 				removeCartItem,
 			}}
