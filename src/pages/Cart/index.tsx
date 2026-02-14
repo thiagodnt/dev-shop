@@ -4,7 +4,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Cart = () => {
-	const { cart, addCartItem } = useContext(CartContext);
+	const { cart, addCartItem, removeCartItem } = useContext(CartContext);
 
 	return (
 		<div>
@@ -50,7 +50,10 @@ const Cart = () => {
 						</div>
 
 						<div className="flex items-center justify-center gap-3">
-							<button className="bg-slate-600 px-2 rounded text-white font-medium flex items-center justify-center transition-transform hover:scale-105 cursor-pointer">
+							<button
+								className="bg-slate-600 px-2 rounded text-white font-medium flex items-center justify-center transition-transform hover:scale-105 cursor-pointer"
+								onClick={() => removeCartItem(item)}
+							>
 								-
 							</button>
 							{item.amount}
