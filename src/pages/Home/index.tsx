@@ -34,8 +34,10 @@ const Home = () => {
 										src={product.cover}
 										alt={product.title}
 									/>
+									<p className="font-medium mt-1 mb-2">
+										{product.title}
+									</p>
 								</Link>
-								<p className="font-medium mt-1 mb-2">{product.title}</p>
 
 								<div className="flex gap-3 items-center">
 									<strong className="text-zinc-700/90">
