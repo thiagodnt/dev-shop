@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState, type ReactNode } from 'react';
 import type { ProductProps } from '../types/Product';
+import toast from 'react-hot-toast';
 
 interface CartContextData {
 	cart: CartProps[];
@@ -60,6 +61,8 @@ function CartProvider({ children }: CartProviderProps) {
 				},
 			];
 		});
+
+		toast.success('Item adicionado ao carrinho');
 	}
 
 	function removeCartItem(product: CartProps) {
@@ -81,8 +84,11 @@ function CartProvider({ children }: CartProviderProps) {
 			const filteredCart = updatedCart.filter(
 				(item) => item.id !== product.id,
 			);
+
 			return filteredCart;
 		});
+
+		toast.success('Item removido do carrinho');
 	}
 
 	function getCartTotalPrice(items: CartProps[]) {
