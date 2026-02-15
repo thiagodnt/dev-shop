@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsCartPlus } from 'react-icons/bs';
-import { Link, useParams } from 'react-router';
+import { Link, useParams, useNavigate } from 'react-router';
 import { api } from '../../services/api';
 import type { ProductProps } from '../../types/Product';
 import { CartContext } from '../../contexts/CartContext';
@@ -11,6 +11,7 @@ const Product = () => {
 	const [product, setProduct] = useState<ProductProps>();
 	const [loading, setLoading] = useState(true);
 	const { addCartItem } = useContext(CartContext);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function getProductDetails() {
@@ -29,6 +30,7 @@ const Product = () => {
 
 	function handleAdditem(product: ProductProps) {
 		addCartItem(product);
+		navigate('/cart');
 	}
 
 	if (loading) {
