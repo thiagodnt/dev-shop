@@ -3,6 +3,7 @@ import { BsCartPlus } from 'react-icons/bs';
 import { api } from '../../services/api';
 import type { ProductProps } from '../../types/Product';
 import { CartContext } from '../../contexts/CartContext';
+import { Link } from 'react-router';
 
 const Home = () => {
 	const [products, setProducts] = useState<ProductProps[]>([]);
@@ -31,11 +32,13 @@ const Home = () => {
 					{products &&
 						products.map((product) => (
 							<section key={product.id} className="w-full">
-								<img
-									className="w-full rounded-lg max-h-70 mb-2"
-									src={product.cover}
-									alt={product.title}
-								/>
+								<Link to={`product/${product.id}`}>
+									<img
+										className="w-full rounded-lg max-h-70 mb-2 transition-transform hover:scale-105"
+										src={product.cover}
+										alt={product.title}
+									/>
+								</Link>
 								<p className="font-medium mt-1 mb-2">{product.title}</p>
 
 								<div className="flex gap-3 items-center">
