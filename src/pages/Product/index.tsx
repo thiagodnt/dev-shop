@@ -64,15 +64,15 @@ const Product = () => {
 	return (
 		<div>
 			<main className="w-full max-w-7xl px-4 mx-auto">
-				<section className="grid grid-cols-3 gap-3 mt-8">
+				<section className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-8">
 					<div>
 						<img
-							className="h-80 w-full"
+							className="max-h-72 w-full object-contain"
 							src={product?.cover}
 							alt={product?.title}
 						/>
 					</div>
-					<div className="col-span-2 gap-2 mt-8">
+					<div className="md:col-span-2 gap-2 mt-8">
 						<h1 className="text-2xl font-bold">{product?.title}</h1>
 						<p className="text-base mt-3">{product?.description}</p>
 						<div className="flex items-center gap-3 mt-4">
