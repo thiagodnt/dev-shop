@@ -18,10 +18,6 @@ const Home = () => {
 		getProducts();
 	}, []);
 
-	function addItem(product: ProductProps) {
-		addCartItem(product);
-	}
-
 	return (
 		<div>
 			<main className="w-full max-w-7xl px-4 mx-auto">
@@ -50,7 +46,7 @@ const Home = () => {
 									</strong>
 									<button
 										className="bg-zinc-800 p-1 rounded transition-transform hover:scale-105 cursor-pointer"
-										onClick={() => addItem(product)}
+										onClick={() => addCartItem(product)}
 									>
 										<BsCartPlus size={20} color="#FFF" />
 									</button>
